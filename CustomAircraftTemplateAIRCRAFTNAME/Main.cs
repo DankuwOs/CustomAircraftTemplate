@@ -8,17 +8,17 @@ namespace CustomAircraftTemplateAIRCRAFTNAME;
 [ItemId("yourname-aircraftname")] // Rename!
 public class Main : VtolMod
 {
-	public static Main instance;
+	public static Main Instance { get; private set; }
 
-	public static string pathToBundle;
+	public static string PathToBundle { get; private set; }
 
-	public string ModFolder; 
+	public string ModFolder { get; private set; } 
 
 	public void Start()
 	{
-		instance = this;
+		Instance = this;
 		ModFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-		pathToBundle = Path.Combine(ModFolder, "aircraftassetbundlefile.whatever"); // Rename! doesnt need an extension.
+		PathToBundle = Path.Combine(ModFolder, "aircraftassetbundlefile.whatever"); // Rename! doesnt need an extension.
 		
 		VTResources.OnLoadingPlayerVehicles += AircraftAPI.VehicleAdd;
 		AircraftAPI.VehicleAdd();
