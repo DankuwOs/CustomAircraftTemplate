@@ -18,7 +18,7 @@ public class Main : VtolMod
 	{
 		instance = this;
 		ModFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-		pathToBundle = Path.Combine(ModFolder, "aircraftassetbundlefile.whatever"); // Rename! doesnt need an extension.
+		pathToBundle = Path.Combine(ModFolder, "aircraftassetbundlefilename"); // Rename! Should be the full file name including the extension if it has one.
 		
 		VTResources.OnLoadingPlayerVehicles += AircraftAPI.VehicleAdd;
 		AircraftAPI.VehicleAdd();
