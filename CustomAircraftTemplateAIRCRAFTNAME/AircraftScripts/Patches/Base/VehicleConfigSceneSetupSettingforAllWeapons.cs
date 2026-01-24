@@ -1,3 +1,4 @@
+using CustomAircraftTemplateAIRCRAFTNAME.AircraftLoading;
 using HarmonyLib;
 
 namespace CustomAircraftTemplateAIRCRAFTNAME.AircraftScripts.Patches.Base;

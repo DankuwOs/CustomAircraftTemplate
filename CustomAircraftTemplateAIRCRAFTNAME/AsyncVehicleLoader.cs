@@ -4,7 +4,7 @@ using CheeseMods.VTOLTaskProgressUI;
 using UnityEngine;
 using VTNetworking;
 
-namespace CustomAircraftTemplateAIRCRAFTNAME;
+namespace CustomAircraftTemplateAIRCRAFTNAME.AircraftLoading;
 
 public class AsyncVehicleLoader : MonoBehaviour
 {

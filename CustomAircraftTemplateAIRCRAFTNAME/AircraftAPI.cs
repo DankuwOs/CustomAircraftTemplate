@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VTNetworking;
 
-namespace CustomAircraftTemplateAIRCRAFTNAME;
+namespace CustomAircraftTemplateAIRCRAFTNAME.AircraftLoading;
 
 internal class AircraftAPI 
 {

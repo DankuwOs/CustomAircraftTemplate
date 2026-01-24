@@ -1,5 +1,6 @@
 using System.IO;
 using System.Reflection;
+using CustomAircraftTemplateAIRCRAFTNAME.AircraftLoading;
 using ModLoader.Framework;
 using ModLoader.Framework.Attributes;
 

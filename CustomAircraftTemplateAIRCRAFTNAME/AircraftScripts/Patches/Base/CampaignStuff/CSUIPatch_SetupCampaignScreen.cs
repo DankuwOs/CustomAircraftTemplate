@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Diagnostics;
+using CustomAircraftTemplateAIRCRAFTNAME.AircraftLoading;
 using HarmonyLib;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace CustomAircraftTemplateAIRCRAFTNAME.AircraftScripts.Patches.Base.CampaignStuff;
+namespace CustomAircraftTemplateAIRCRAFTNAME.AircraftScripts.Patches.Base;
 
 [HarmonyPatch(typeof(CampaignSelectorUI), nameof(CampaignSelectorUI.SetupCampaignScreenRoutine))]
 public class CSUIPatch_SetupCampaignScreen

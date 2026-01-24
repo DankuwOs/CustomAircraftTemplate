@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace CustomAircraftTemplateAIRCRAFTNAME.AircraftScripts.Patches.Base.CampaignStuff;
+namespace CustomAircraftTemplateAIRCRAFTNAME.AircraftScripts.Patches.Base;
 
 [HarmonyPatch(typeof(VTResources), "LoadExternalVehicle")]
 public class OkuPatch
