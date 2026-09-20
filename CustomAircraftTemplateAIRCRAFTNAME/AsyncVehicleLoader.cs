@@ -37,12 +37,9 @@ public class AsyncVehicleLoader : MonoBehaviour
 		}
 
 		AircraftAPI.pvAircraft = VTResources.GetPlayerVehicle(AircraftAPI.AircraftName);
-
-		TargetIdentity aircraftIdentity = TargetIdentityManager.RegisterNonSpawnIdentity(
-			AircraftAPI.pvAircraft.vehicleName, AircraftAPI.pvAircraft.vehicleName,
-			Actor.Roles.Air);
-		if (!TargetIdentityManager.indexedIdentities.Contains(aircraftIdentity))
-			TargetIdentityManager.indexedIdentities.Add(aircraftIdentity);
+		
+		// This is all VTOLAPI is used for, you can remove this if you want but your shaders might be broken or slightly off.
+		VTAPI.FixShaders(AircraftAPI.pvAircraft.vehiclePrefab, false, true, true);
 		
 		VTResources.LoadStandaloneLODInfos(false, false);
 		var lodCampaign = VTResources.GenerateStandaloneCustomScenarios(AircraftAPI.AircraftName);
@@ -81,16 +78,20 @@ public class AsyncVehicleLoader : MonoBehaviour
 					if (missileUnitID.unitID.ToLower().Contains("aircraftid.")) // Rename!
 					{
 						TargetIdentity targetIdentity = TargetIdentityManager.RegisterNonSpawnIdentity($"AircraftID.{obj.name}", // Rename!
-							missileUnitID.unitID,
+							missileUnitID.targetName,
 							missileUnitID.role);
 						if (!TargetIdentityManager.indexedIdentities.Contains(targetIdentity))
 							TargetIdentityManager.indexedIdentities.Add(targetIdentity);
+						
+						AircraftAPI.aircraftIdentities.Add(targetIdentity);
 					}
 
 
 					AircraftAPI.ResourcesToRemove.Add(equipMl.missileResourcePath);
 				}
 			}
+			
+			AircraftAPI.RegisterIdentity();
 		}
 		catch (Exception e)
 		{

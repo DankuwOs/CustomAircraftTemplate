@@ -14,6 +14,8 @@ internal class AircraftAPI
 
 	public static AssetBundle aircraftBundle;
 
+	public static List<TargetIdentity> aircraftIdentities = new List<TargetIdentity>(); 
+
 	public static void VehicleAdd()
 	{
 		var go = new GameObject("AsyncVehicleLoader");
@@ -36,7 +38,41 @@ internal class AircraftAPI
 		VTResources.finalPVList.Remove(pvAircraft);
 		VTResources.pvDict.Remove(pvAircraft.vehicleName);
 		VTResources.loadedExternalVehicles.Remove(pvAircraft.vehiclePrefab.GetComponent<ExternalVehicleInfo>());
+
+		foreach (var targetIdentity in aircraftIdentities)
+		{
+			TargetIdentityManager.indexedIdentities.Remove(targetIdentity);
+			TargetIdentityManager.identityDict.Remove(targetIdentity.targetId);
+		}
+		
+		SortIdentities();
 		
 		aircraftBundle.Unload(true);
+	}
+
+	public static void RegisterIdentity()
+	{
+		var aircraftIdentity = TargetIdentityManager.RegisterNonSpawnIdentity(
+			pvAircraft.vehicleName, pvAircraft.vehicleName,
+			Actor.Roles.Air);
+		
+		if (!TargetIdentityManager.indexedIdentities.Contains(aircraftIdentity))
+		{
+			aircraftIdentity.index = TargetIdentityManager.indexedIdentities.Count;
+			TargetIdentityManager.indexedIdentities.Add(aircraftIdentity);
+		}
+		
+		aircraftIdentities.Add(aircraftIdentity);
+		
+		SortIdentities();
+	}
+
+	private static void SortIdentities()
+	{
+		TargetIdentityManager.indexedIdentities.Sort(TargetIdentityManager.IdentSorter);
+		for (int j = 0; j < TargetIdentityManager.indexedIdentities.Count; j++)
+		{
+			TargetIdentityManager.indexedIdentities[j].index = j;
+		}
 	}
 }
