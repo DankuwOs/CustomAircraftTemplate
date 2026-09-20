@@ -3,6 +3,7 @@ using System.Collections;
 using CheeseMods.VTOLTaskProgressUI;
 using UnityEngine;
 using VTNetworking;
+using VTOLAPI;
 
 namespace CustomAircraftTemplateAIRCRAFTNAME.AircraftLoading;
 
